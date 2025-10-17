@@ -1,0 +1,19 @@
+uint8_t egg_params[5][6] = {
+    {1, 3, 2, 2, 2, 1},
+    {2, 4, 0, 3, 0, 0},
+    {6, 2, 2, 3, 0, 1},
+    {8, 3, 1, 2, 3, 2},
+    {9, 1, 0, 3, 1, 3}
+};
+
+uint8_t key[16] =
+    {0xfc, 0x52, 0x2e, 0x01, 0x71, 0x71, 0xb6, 0x36, 0x7a, 0x58, 0x86, 0x1a, 0xa2, 0xba, 0xc6, 0xd1};    
+
+uint8_t compute_gf(uint8_t* eggs){
+    if (((((uint8_t)(*eggs ^ eggs[1]) + (uint8_t)eggs[4]) & 1) == 0) && ((eggs[3] & 1) == 0)) {
+        //return (eggs[3] + 0x11) * (eggs[2] - 8) - eggs[4];
+        return (eggs[3]) * eggs[2] + 0x11 * eggs[2] - 8 * eggs[3] - 8 * 0x11 - eggs[4];
+    }
+    return (uint8_t)eggs[3] * 0x23 * (uint8_t)eggs[2] * 0x5c - (uint8_t)eggs[4];
+}
+

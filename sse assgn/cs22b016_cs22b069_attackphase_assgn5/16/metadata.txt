@@ -1,0 +1,13 @@
+uint8_t key[16] = {0xb6, 0x8a, 0x05, 0xc4, 0xbd, 0x10, 0x8a, 0x11, 0xde, 0x0d, 0x3f, 0xae, 0x41, 0x81, 0x46, 0x0c};
+
+uint8_t egg_params[5][6] =
+    {{ 4, 1, 1,2, 0, 2},
+     {5, 2, 2, 2, 3, 0},
+     {6, 4, 0, 0, 3, 2},
+     {8, 4, 3, 2, 2, 2},
+     {9, 3, 3, 1, 1, 0}};
+
+uint8_t compute_gf(uint8_t* eggs) {
+   
+    return (uint8_t)(eggs[4] * eggs[3] * 0x6B - eggs[2]);
+}
